@@ -1,12 +1,13 @@
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { useCartStore } from "../../store/cart";
 
 const navItems = [
   {
     name: "home",
     icon: "faCart",
-    href: "#",
+    href: "/",
   },
   {
     name: "shop",
@@ -31,6 +32,8 @@ const navItems = [
 ];
 
 const Nav = () => {
+  const totalItems = useCartStore((state) => state.totalItems);
+
   return (
     <div className="flex justify-between min-h-[70px] items-center">
       <div className="logo font-bold text-2xl w-[100px]"></div>
@@ -47,10 +50,13 @@ const Nav = () => {
       </ul>
       <Link
         to="/cart"
-        className="border flex justify-center items-center gap-2 capitalize px-5 py-2 rounded-md hover:bg-black hover:text-white transition-all"
+        className="relative border flex justify-center items-center gap-2 capitalize px-5 py-2 rounded-md hover:bg-black hover:text-white transition-all"
       >
         <FontAwesomeIcon icon={faCartShopping} />
         <p>cart</p>
+        <span className=" left-[-10px] bottom-[-10px] items-count h-[25px] w-[25px] border flex justify-center items-center rounded-full p-2 bg-black text-white font-semibold">
+          {totalItems}
+        </span>
       </Link>
     </div>
   );

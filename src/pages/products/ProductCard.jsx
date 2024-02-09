@@ -2,10 +2,26 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { twMerge } from "tailwind-merge";
+import { useCartStore } from "../../store/cart";
+import Button from "../../components/button/Button";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ item }) => {
+  const addToCart = useCartStore((state) => state.addToCart);
+
+  const navigate = useNavigate();
+
+  const addToCartHandler = () => {
+    addToCart(item);
+  };
+
   return (
-    <div className="product-card relative flex flex-col gap-2 w-full border-gray-200 border-[1px] rounded-md overflow-hidden bg-gray-100">
+    <div
+      onClick={() => {
+        navigate(`/product/${item.id}`);
+      }}
+      className="cursor-pointer hover:shadow-2xl hover:scale-[1.03] transition-all product-card relative flex flex-col gap-2 w-full border-gray-200 border-[1px] rounded-md overflow-hidden bg-gray-100"
+    >
       <div className="image h-[200px] object-cover w-full overflow-hidden">
         <img
           src={item?.thumbnail}
@@ -25,22 +41,24 @@ const ProductCard = ({ item }) => {
           </div>
           <p className="font-semibold">Rs.{item?.price}</p>
         </div>
-        <button
-          className={twMerge(
-            "mt-auto bg-[rgba(0,0,0,1)] transition-all  w-full p-2 rounded-md text-white flex justify-center items-center gap-4 text-sm hover:bg-[rgba(255,255,255,1)] border-2 hover:border-black hover:text-black",
-            item.stock === 0 &&
-              "cursor-not-allowed opacity-50 hover:text-unset hover:bg-unset hover:border-unset"
-          )}
-        >
-          {item?.stock != 0 ? (
-            <>
-              <span>Add To Cart</span>
-              <FontAwesomeIcon icon={faCartShopping} />
-            </>
-          ) : (
-            <span>Out of Stock</span>
-          )}
-        </button>
+        <div className="mt-auto">
+          <Button
+            onClick={addToCartHandler}
+            className={twMerge(
+              item.stock < 0 &&
+                "cursor-not-allowed opacity-50 hover:text-unset hover:bg-unset hover:border-unset"
+            )}
+          >
+            {item?.stock != 0 ? (
+              <>
+                <span>Add To Cart</span>
+                <FontAwesomeIcon icon={faCartShopping} />
+              </>
+            ) : (
+              <span>Out of Stock</span>
+            )}
+          </Button>
+        </div>
       </div>
     </div>
   );

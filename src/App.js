@@ -4,6 +4,8 @@ import ProductsPage from "./pages/products/ProductsPage";
 import CartPage from "./pages/cart/CartPage";
 import Wrapper from "./components/HOC/Wrapper";
 import Nav from "./components/nav/Nav";
+import CheckoutPage from "./pages/checkout/CheckoutPage";
+import ProductDetail from "./pages/productdetail/ProductDetail";
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
         {/* cart page */}
         <Route path="/cart" element={<CartPage />} />
         {/* product detail page */}
+        <Route path="/product/:id" element={<ProductDetail />} />
+        {/* checkout page */}
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </div>
   );

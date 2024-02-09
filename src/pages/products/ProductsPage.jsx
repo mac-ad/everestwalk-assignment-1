@@ -13,7 +13,6 @@ const ProductsPage = () => {
       const res = await fetch(urls.products);
       const productsResponse = await res.json();
 
-      console.log(productsResponse);
       setProducts(productsResponse.products);
     };
 
