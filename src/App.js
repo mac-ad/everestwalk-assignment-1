@@ -12,21 +12,19 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <div className="mt-20">
-        <Routes>
-          <Route path="/" element={<Navigate to="products" />} />
-          {/* products page */}
-          <Route path="/products" element={<ProductsPage />} />
-          {/* cart page */}
-          <Route path="/cart" element={<CartPage />} />
-          {/* product detail page */}
-          <Route path="/product/:id" element={<ProductDetail />} />
-          {/* checkout page */}
-          <Route path="/checkout" element={<CheckoutPage />} />
-          {/* search page */}
-          <Route path="/search" element={<SearchPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Navigate to="products" />} />
+        {/* products page */}
+        <Route path="/products" element={<ProductsPage />} />
+        {/* cart page */}
+        <Route path="/cart" element={<CartPage />} />
+        {/* product detail page */}
+        <Route path="/product/:id" element={<ProductDetail />} />
+        {/* checkout page */}
+        <Route path="/checkout" element={<CheckoutPage />} />
+        {/* search page */}
+        <Route path="/search" element={<SearchPage />} />
+      </Routes>
     </div>
   );
 }

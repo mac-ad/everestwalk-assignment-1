@@ -13,7 +13,9 @@ const CartItem = ({ detail }) => {
   const removeSelectedId = useCartStore((state) => state.removeSelectedId);
 
   const removeItemHandler = () => {
-    removeSelectedId(detail?.id);
+    if (selectedItemsId.includes(detail?.id)) {
+      removeSelectedId(detail?.id);
+    }
     removeFromCart(detail?.id);
   };
 

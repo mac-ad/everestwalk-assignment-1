@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../button/Button";
 import { useRef, useState } from "react";
+import { SearchIcon } from "lucide-react";
 
 const SearchComp = ({ val }) => {
   const searchRef = useRef(null);
@@ -9,7 +10,7 @@ const SearchComp = ({ val }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (searchRef.current.value === "") return;
+    // if (searchRef.current.value === "") return;
     navigate(`/search?q=${searchRef.current.value}`);
   };
 
@@ -27,7 +28,9 @@ const SearchComp = ({ val }) => {
           //   value={val}
           //   onChange = {}
         />
-        <button className="bg-black text-white px-3 rounded-md">search</button>
+        <button className="bg-black text-white px-3 rounded-md">
+          <SearchIcon />
+        </button>
       </form>
     </div>
   );

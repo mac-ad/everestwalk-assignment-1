@@ -37,7 +37,7 @@ const Nav = () => {
   const totalItems = useCartStore((state) => state.totalItems);
 
   return (
-    <div className=" fixed top-0 w-full z-10 px-1 bg-white">
+    <div className="px-1 bg-white">
       <Wrapper>
         <div className="flex min-h-[70px] items-center justify-between ">
           {/* <div className="logo font-bold text-2xl w-[100px]"></div> */}

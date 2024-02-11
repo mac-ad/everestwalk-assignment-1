@@ -93,6 +93,7 @@ export const useCartStore = create(
             ...state,
             cartItems: newCartItems,
             totalItems: state.totalItems - 1,
+            totalCost: totalCost,
             // totalCost: state.totalCost - deletedProductPrice * deletedQuantity,
           };
 

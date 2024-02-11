@@ -42,7 +42,7 @@ const ProductsPage = () => {
           setCategory={setCategory}
           setProducts={setProducts}
         /> */}
-        <div className="mb-5">
+        <div className="my-10">
           <SearchComp />
         </div>
 

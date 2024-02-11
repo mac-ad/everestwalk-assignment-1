@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 const range = (start, end) => {
   return [...Array(end - start).keys()].map((el) => el + start);
@@ -20,10 +21,19 @@ const Pagination = ({ total, limit, onPageChange }) => {
     onPageChange(number);
   };
 
+  console.log("current page = ", currentPage);
+
   return (
-    <div>
+    <div className="flex  justify-center">
       {pageNumbers.map((page) => (
-        <button onClick={() => handleClick(page)} key={page}>
+        <button
+          onClick={() => handleClick(page)}
+          key={page}
+          className={twMerge(
+            "border h-[30px] w-[30px] bg-gray-500 text-white hover:bg-black",
+            currentPage === page && "bg-black"
+          )}
+        >
           {page}
         </button>
       ))}
