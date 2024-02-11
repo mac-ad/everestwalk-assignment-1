@@ -6,24 +6,27 @@ import Wrapper from "./components/HOC/Wrapper";
 import Nav from "./components/nav/Nav";
 import CheckoutPage from "./pages/checkout/CheckoutPage";
 import ProductDetail from "./pages/productdetail/ProductDetail";
+import SearchPage from "./pages/search/SearchPage";
 
 function App() {
   return (
     <div className="App">
-      <Wrapper>
-        <Nav />
-      </Wrapper>
-      <Routes>
-        <Route path="/" element={<Navigate to="products" />} />
-        {/* products page */}
-        <Route path="/products" element={<ProductsPage />} />
-        {/* cart page */}
-        <Route path="/cart" element={<CartPage />} />
-        {/* product detail page */}
-        <Route path="/product/:id" element={<ProductDetail />} />
-        {/* checkout page */}
-        <Route path="/checkout" element={<CheckoutPage />} />
-      </Routes>
+      <Nav />
+      <div className="mt-20">
+        <Routes>
+          <Route path="/" element={<Navigate to="products" />} />
+          {/* products page */}
+          <Route path="/products" element={<ProductsPage />} />
+          {/* cart page */}
+          <Route path="/cart" element={<CartPage />} />
+          {/* product detail page */}
+          <Route path="/product/:id" element={<ProductDetail />} />
+          {/* checkout page */}
+          <Route path="/checkout" element={<CheckoutPage />} />
+          {/* search page */}
+          <Route path="/search" element={<SearchPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }

@@ -24,7 +24,7 @@ const ProductDetail = () => {
         <img src={product?.thumbnail} alt="" />
         <h1 className="text-2xl">{product?.title}</h1>
         <div className="flex items-center gap-2">
-          {product?.images.map((img) => (
+          {product?.images?.map((img) => (
             <div className=" border border-gray-500">
               <img src={img} className="" />
             </div>

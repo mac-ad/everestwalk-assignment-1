@@ -9,19 +9,21 @@ const QuantityController = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const removeSelectedId = useCartStore((state) => state.removeSelectedId);
 
   const decrementHandler = () => {
     if (product.quantity !== 1) {
-      decrementQuantity(product);
+      decrementQuantity(product.id);
       return;
     }
+
+    removeSelectedId(product.id);
     removeFromCart(product.id);
   };
 
   const incrementHandler = () => {
-    addToCart(product);
-
-    // incrementQuantity(product.id)
+    // addToCart(product);
+    incrementQuantity(product.id);
   };
 
   return (

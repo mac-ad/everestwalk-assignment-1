@@ -1,101 +1,43 @@
-import { useForm } from "react-hook-form";
-import OrderSummary from "../cart/OrderSummary.";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
-import { object, string } from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-const formFields = [
-  {
-    name: "name",
-    title: "name",
-    type: "text",
-  },
-  {
-    name: "phone",
-    title: "phone",
-    type: "text",
-  },
-  {
-    name: "shipping_address",
-    title: "shipping address",
-    type: "text",
-  },
-  {
-    name: "billing_address",
-    title: "billing address",
-    type: "text",
-  },
-];
-
-const checkoutFormSchema = object({
-  name: string().required("name is required"),
-  phone: string().required("phone is required"),
-  shipping_address: string().required("shipping address is required"),
-  billing_address: string().required("billing address is required"),
-});
+import { useCartStore } from "../../store/cart";
 
 const CheckoutForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(checkoutFormSchema),
-  });
+  const navigate = useNavigate();
 
-  const submitHandler = (data) => {
-    console.log(data);
+  // after placing order is successfull
+  // cart items which are selected must be removed and selectedId must be set to empty
+
+  const placeItemsAfterStep = useCartStore(
+    (state) => state.placeItemsAfterStep
+  );
+
+  const placeOrderHandler = () => {
+    console.log("placing order");
+    placeItemsAfterStep();
+    navigate("/");
   };
 
   return (
-    <div className="mt-10 max-w-[500px]">
-      <form onSubmit={handleSubmit(submitHandler)}>
-        {/* <div className="form-control">
-          <label htmlFor="name">Name</label>
-          <input type="text" id="name" {...register("name")} />
-        </div>
-        <div className="form-control">
-          <label htmlFor="phone">Phone</label>
-          <input type="text" id="phone" {...register("phone")} />
-        </div>
-        <div className="form-control">
-          <label htmlFor="shipping-address">Shipping address</label>
-          <input
-            type="text"
-            id="shipping-address"
-            {...register("shipping-address")}
-          />
-        </div>
-        <div className="form-control">
-          <label htmlFor="billing-address">Billing address</label>
-          <input
-            type="text"
-            id="billing-address"
-            {...register("billing-address")}
-          />
-        </div> */}
-
-        {formFields.map((field) => (
-          <div
-            className="form-control flex flex-col gap-2 mb-3"
-            key={field.name}
-          >
-            <label htmlFor={field.name} className="capitalize">
-              {field.title}
-            </label>
-            <input
-              type="text"
-              id={field.name}
-              {...register(field.name)}
-              className="border-black border w-full py-1 rounded-[3px] px-2"
-            />
-          </div>
-        ))}
-
-        <Button className="mt-8">
-          <button type="submit">Checkout</button>
-        </Button>
-      </form>
+    <div className="bg-white p-4 rounded-[5px]">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus odit
+      et porro, laboriosam vitae sunt blanditiis praesentium minima assumenda
+      expedita eveniet quaerat neque, ullam similique labore eaque magni, ipsa
+      reiciendis voluptatibus adipisci consectetur! Cum eum obcaecati sint,
+      quas, laborum porro accusamus voluptas soluta fugit sapiente, perferendis
+      dolor sed expedita nobis. Et dolores tempora dolorum harum similique
+      adipisci, aspernatur, aliquid minima aperiam nemo consectetur quam
+      corporis id! Repudiandae quia nihil quas necessitatibus! Vitae ullam
+      possimus aliquam, placeat voluptatibus incidunt fuga consectetur obcaecati
+      eligendi illo assumenda doloribus fugiat accusantium omnis, animi ad
+      ratione magni dignissimos repudiandae sequi! Unde accusamus incidunt
+      quibusdam tempore! Temporibus magnam amet nesciunt quo. Velit eligendi,
+      deleur odio, natus omnis tempora. Ullam, delectus in? Quidem quod atque
+      nemo blanditiis, quaerat accusamus explicabo debitis quis est earum soluta
+      magnam iusto similique officiis deserunt praesentium animi nihil.
+      <Button onClick={placeOrderHandler} className="mt-5">
+        Place order
+      </Button>
     </div>
   );
 };

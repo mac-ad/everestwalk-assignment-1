@@ -15,7 +15,7 @@ const CartPage = () => {
       <WrapperSmall>
         <h2 className="text-3xl mb-10">Cart</h2>
         <div className="flex flex-col lg:flex-row gap-[5em] justify-between items-start">
-          <div className="w-full flex flex-col md:max-w-[700px] ">
+          <div className="w-full flex flex-col mx-auto md:max-w-[700px] ">
             {totalItems === 0 ? (
               <div className="border-dotted border-gray-500 border-2 min-h-[150px] mt-5 flex justify-center flex-col gap-2 items-center">
                 <FontAwesomeIcon
