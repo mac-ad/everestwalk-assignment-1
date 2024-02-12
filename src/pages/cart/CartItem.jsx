@@ -33,55 +33,51 @@ const CartItem = ({ detail }) => {
     removeSelectedId(detail.id);
 
     console.log("removing from selected ids");
-
-    // if (selected) {
-    //   addSelectedId(detail.id);
-    //   return;
-    // }
-
-    // removeSelectedId(detail.id);
   };
 
   return (
     <tr
       className={twMerge(
-        " rounded-md",
+        " rounded-md cursor-pointer hover:bg-gray-100",
         selectedItemsId.includes(detail.id) && "bg-gray-100"
       )}
     >
-      <td className="px-2">
+      <td className="px-3 py-2 sm:pl-4 pointer-events-none">
         <input
           type="checkbox"
           id={`${detail.id}`}
           onClick={selectHandler}
           checked={selectedItemsId.includes(detail.id)}
+          className=""
         />
       </td>
-      <td>
-        <label htmlFor={detail.id} className="flex gap-4 items-start p-4">
-          <div className="h-[45px] w-[45px] overflow-hidden rounded-sm">
+      <td className="py-2 ">
+        <label htmlFor={detail.id} className="flex gap-4 items-start py-4">
+          <div className="h-[45px] w-[45px] overflow-hidden rounded-sm  pointer-events-none">
             <img
               className="w-full h-full object-cover"
               src={detail?.thumbnail}
               alt=""
             />
           </div>
-          <div className="mt-[-3px]">
+          <div className="mt-[-3px]  pointer-events-none">
             <h4 className="text-sm opacity-100 font-semibold">
               {detail.title}
             </h4>
           </div>
         </label>
       </td>
-      <td className="p-4">Rs. {detail.price}</td>
+      <td className="p-4 whitespace-nowrap">Rs. {detail.price}</td>
       <td className="p-4">
         <QuantityController product={detail} />
       </td>
-      <td className="p-4">Rs. {detail.quantity * detail.price}</td>
-      <td className="pr-2">
+      <td className="p-4 whitespace-nowrap">
+        Rs. {detail.quantity * detail.price}
+      </td>
+      <td className="pr-4">
         {/* <Button className="bg-white" onClick={() => removeFromCart(detail?.id)}> */}
         <button
-          className="w-[20px] h-[20px] text-red-500"
+          className="w-[20px] h-[20px] text-red-500 1"
           onClick={removeItemHandler}
         >
           <FontAwesomeIcon icon={faTrash} />

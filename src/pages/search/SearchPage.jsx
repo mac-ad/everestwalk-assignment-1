@@ -6,11 +6,13 @@ import SearchComp from "../../components/searchComp/SearchComp";
 import Pagination from "../../components/pagination/Pagination";
 import { Loader, Loader2 } from "lucide-react";
 import FilterControl from "../../components/filterControl/FilterControl";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
@@ -31,8 +33,8 @@ const SearchPage = () => {
       const productsResponse = await res.json();
       console.log(productsResponse);
       setProducts(productsResponse.products);
-      // setCategories([]);
       setLoading(false);
+      window.scrollTo(0, 0);
     }
     fetchProducts();
   };
@@ -73,8 +75,10 @@ const SearchPage = () => {
           <div>
             {loading ? (
               <div className=" flex flex-col gap-2 justify-center items-center min-h-[500px]">
-                <Loader2 className="animate-loader" />
-                ...getting products
+                <FontAwesomeIcon
+                  icon={faSpinner}
+                  className="animate-loader text-3xl"
+                />
               </div>
             ) : (
               <div className="">

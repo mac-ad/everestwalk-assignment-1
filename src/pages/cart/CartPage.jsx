@@ -28,7 +28,9 @@ const CartPage = () => {
               <CartItemsContainer items={cartItems} />
             )}
           </div>
-          <OrderSummary />
+          <div className="border p-4 rounded-md mx-auto w-full sm:w-[500px] sm:mx-[unset]">
+            <OrderSummary />
+          </div>
         </div>
       </WrapperSmall>
     </div>

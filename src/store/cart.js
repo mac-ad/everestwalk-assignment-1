@@ -9,7 +9,7 @@ export const useCartStore = create(
       selectedItemsId: [],
       totalItems: 0,
       totalCost: 0,
-      addToCart: (product) =>
+      addToCart: (product, quantity = 1) =>
         set((state) => {
           // check if product is already in cart
           // if product is already in cart then increment the quantity
@@ -25,7 +25,7 @@ export const useCartStore = create(
                 ...state.cartItems,
                 {
                   ...product,
-                  quantity: 1,
+                  quantity: quantity,
                 },
               ],
               // totalCost: state.totalCost + product.price,
@@ -43,7 +43,7 @@ export const useCartStore = create(
                 ...state.cartItems,
                 {
                   ...product,
-                  quantity: 1,
+                  quantity: quantity,
                 },
               ],
               totalItems: state.totalItems + 1,
@@ -58,7 +58,7 @@ export const useCartStore = create(
                 if (item.id !== product.id) return item;
                 return {
                   ...item,
-                  quantity: item.quantity + 1,
+                  quantity: item.quantity + quantity,
                 };
               }),
               // totalCost: state.totalCost + product.price,

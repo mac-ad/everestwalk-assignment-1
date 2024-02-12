@@ -6,17 +6,19 @@ import CheckoutForm from "./CheckoutForm";
 const CheckoutPage = () => {
   return (
     <div className="">
-      <WrapperSmall>
-        <h1 className="text-2xl mt-[5em] mb-5">Checkout</h1>
-        <div className="flex gap-10 ">
-          <div className="w-full">
-            <CheckoutForm />
-          </div>
-          <div className="w-full">
-            <OrderSummary />
+      <Wrapper>
+        <div className=" max-w-[500px] mx-auto md:max-w-[1200px]">
+          <h1 className="text-2xl mt-[5em] mb-5">Checkout</h1>
+          <div className="grid gap-20 grid-cols-1 md:grid-cols-2 items-start">
+            <div className="border p-4 rounded-[5px] md:order-2 md:min-w-[350px] md:w-fit md:ml-auto">
+              <OrderSummary />
+            </div>
+            <div className="w-full mb-10">
+              <CheckoutForm />
+            </div>
           </div>
         </div>
-      </WrapperSmall>
+      </Wrapper>
     </div>
   );
 };
