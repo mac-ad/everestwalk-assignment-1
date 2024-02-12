@@ -7,6 +7,8 @@ import Nav from "./components/nav/Nav";
 import CheckoutPage from "./pages/checkout/CheckoutPage";
 import ProductDetail from "./pages/productdetail/ProductDetail";
 import SearchPage from "./pages/search/SearchPage";
+import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         {/* search page */}
         <Route path="/search" element={<SearchPage />} />
       </Routes>
+      <Toaster />
     </div>
   );
 }

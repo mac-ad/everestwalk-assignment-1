@@ -18,44 +18,7 @@ const SearchPage = () => {
   const [total, setTotal] = useState(0);
   const [limit, setLimit] = useState(0);
 
-  const [sort, setSort] = useState(null);
-  const [categories, setCategories] = useState([]);
-
   const query = searchParams.get("q");
-
-  function filterByCategory() {
-    const filteredProduct = products.filter((item) =>
-      categories.includes(item.category)
-    );
-    console.log(filteredProduct);
-    setFilteredProducts(filteredProduct);
-  }
-
-  useEffect(() => {
-    filterByCategory();
-  }, [categories]);
-
-  useEffect(() => {
-    function sortLowest(array) {
-      return [...array].sort((a, b) => a.price - b.price);
-    }
-
-    function sortHighest(array) {
-      return [...array].sort((a, b) => b.price - a.price);
-    }
-
-    if (sort === "lowest") {
-      const filtered = sortLowest(
-        categories.length > 0 ? filteredProducts : products
-      );
-      setFilteredProducts(filtered);
-    } else {
-      const filtered = sortHighest(
-        categories.length > 0 ? filteredProducts : products
-      );
-      setFilteredProducts(filtered);
-    }
-  }, [sort]);
 
   const onPageChange = (number) => {
     setLoading(true);
@@ -68,8 +31,7 @@ const SearchPage = () => {
       const productsResponse = await res.json();
       console.log(productsResponse);
       setProducts(productsResponse.products);
-      setCategories([]);
-      setSort(null);
+      // setCategories([]);
       setLoading(false);
     }
     fetchProducts();
@@ -100,14 +62,14 @@ const SearchPage = () => {
           <SearchComp val={query} />
         </div>
         <h2 className="mb-5 text-2xl">Search results for "{query}"</h2>
-        <div className="grid grid-cols-[minmax(250px,1fr),4fr] gap-10">
-          <div className="mt-5 mb-10 sticky top-[70px] h-[500px]">
+        <div className="">
+          {/* <div className="mt-5 mb-10 sticky top-[70px] h-[500px]">
             <FilterControl
               setSort={setSort}
               setCategory={setCategories}
               selectedCategories={categories}
             />
-          </div>
+          </div> */}
           <div>
             {loading ? (
               <div className=" flex flex-col gap-2 justify-center items-center min-h-[500px]">
@@ -115,17 +77,9 @@ const SearchPage = () => {
                 ...getting products
               </div>
             ) : (
-              <>
-                <div className="">
-                  <div className=""></div>
-                  {products?.length > 0 && categories.length === 0 && (
-                    <ProductsGrid products={products} />
-                  )}
-                  {categories.length > 0 && (
-                    <ProductsGrid products={filteredProducts} />
-                  )}
-                </div>
-              </>
+              <div className="">
+                <ProductsGrid products={products} />
+              </div>
             )}
             {limit !== total && (
               <div className="mt-5 mb-10">

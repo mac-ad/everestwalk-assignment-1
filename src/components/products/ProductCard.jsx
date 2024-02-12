@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { useCartStore } from "../../store/cart";
 import Button from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ item }) => {
   const addToCart = useCartStore((state) => state.addToCart);
@@ -13,6 +14,7 @@ const ProductCard = ({ item }) => {
 
   const addToCartHandler = (e) => {
     e.stopPropagation();
+    toast("item added to cart");
     addToCart(item);
   };
 

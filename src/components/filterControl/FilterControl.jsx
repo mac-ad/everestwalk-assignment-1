@@ -9,13 +9,10 @@ const FilterControl = ({ setSort, setCategory, selectedCategories }) => {
 
   const sortChangeHandler = (e) => {
     if (e.target.value === "sort") return;
-    console.log(e.target.value);
     setSort(e.target.value);
   };
 
   const categoryCheckHandler = (e) => {
-    console.log(e.target.value);
-
     if (e.target.checked) {
       setCategory((prev) => [...prev, e.target.value]);
       return;
@@ -31,7 +28,6 @@ const FilterControl = ({ setSort, setCategory, selectedCategories }) => {
       const res = await fetch("https://dummyjson.com/products/categories");
       const categories = await res.json();
 
-      console.log(categories);
       setCategories(categories);
     };
 
@@ -51,12 +47,6 @@ const FilterControl = ({ setSort, setCategory, selectedCategories }) => {
           <option value="lowest">Price (lowest)</option>
           <option value="highest">Price (highest)</option>
         </select>
-        {/* <select name="category" id="category" className={selectClass}>
-          <option value="category">select category</option>
-          {categories?.map((cat) => (
-            <option value={cat}>{cat}</option>
-          ))}
-        </select> */}
         <div className=" mt-5 overflow-y-auto pr-5 pl-1">
           <h2 className="font-bold mb-2">Categories:</h2>
           {categories?.map((cat) => (

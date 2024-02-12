@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -13,8 +14,6 @@ export const useCartStore = create(
           // check if product is already in cart
           // if product is already in cart then increment the quantity
           // else add to cart with quantity 1
-          console.log(product, state);
-
           let newState = { ...state };
 
           if (state.totalItems === 0) {
@@ -66,6 +65,8 @@ export const useCartStore = create(
             };
           }
 
+          toast.success("item added to cart");
+
           return newState;
         }),
       removeFromCart: (productId) =>
@@ -96,6 +97,7 @@ export const useCartStore = create(
             totalCost: totalCost,
             // totalCost: state.totalCost - deletedProductPrice * deletedQuantity,
           };
+          toast.success("item removed to cart");
 
           return newState;
         }),
@@ -204,6 +206,8 @@ export const useCartStore = create(
             totalCost: 0,
             totalItems: state.totalItems - state.selectedItemsId.length,
           };
+
+          toast.success("Order placed successfully");
 
           return newState;
         }),

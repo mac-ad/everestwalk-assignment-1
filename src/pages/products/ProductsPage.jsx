@@ -10,43 +10,24 @@ import SearchComp from "../../components/searchComp/SearchComp";
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
 
-  // const [sort, setSort] = useState(null);
-  // const [category, setCategory] = useState(null);
-
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await fetch(urls.products);
       const productsResponse = await res.json();
-
+      console.log("fetching ", productsResponse);
       setProducts(productsResponse.products);
     };
 
     fetchProducts();
   }, []);
 
-  // useEffect(() => {
-  // const filteredProducts = [];
-
-  // if(sort !== "sort"){
-  //   filteredProducts =
-  // }
-  // }, [sort, category]);
-
   return (
     <div className="py-5">
       <Wrapper>
-        {/* <h1 className="text-3xl font-semibold mb-5">Products</h1> */}
-        {/*  filter */}
-        {/* <FilterProducts
-          setSort={setSort}
-          setCategory={setCategory}
-          setProducts={setProducts}
-        /> */}
         <div className="my-10">
           <SearchComp />
         </div>
-
-        <ProductsGrid products={products} />
+        {products.length > 0 && <ProductsGrid products={products} />}
       </Wrapper>
     </div>
   );
