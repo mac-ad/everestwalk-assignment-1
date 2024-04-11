@@ -1,5 +1,7 @@
 # Partial Ecommerce
 
+I made this as an assignment during evaluation in my internship at everestwalk groups.
+
 ```
   - product display
   - sorting
